@@ -4021,6 +4021,7 @@ Contributors and their Github usernames in roughly chronological order:
     - Alex Claman (@claman)
     - @qadzek
     - Nathan Giard (@giardn)
+    - Tyler (@tyler000000)
 
 
 ==============================================================================
@@ -4039,6 +4040,11 @@ master is retained as a legacy mirror of the dev branch.
 
 This is somewhat experimental, and will probably be refined over time.
 
+2026.07.06
+
+New:~
+    * Add a toc_max_depth option to remove subheaders beyond a certain depth
+      from the TOC
 
 2026.04.08~
 

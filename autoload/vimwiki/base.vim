@@ -2555,7 +2555,7 @@ function! vimwiki#base#table_of_contents(create) abort
       " Skip if this is beyond the max TOC level
       if h_level > max_depth
         continue
-      fi
+      endif
 
       " Don't include the TOC's header itself
       if h_text ==# self.toc_header_text

@@ -275,14 +275,16 @@ execute 'syntax region VimwikiMath start=/'.vimwiki#vars#get_syntaxlocal('rxMath
       \ '/ end=/'.vimwiki#vars#get_syntaxlocal('rxMathEnd').'/ contains=@NoSpell'
 
 
+" Placeholders go at the beginning of the file, each one on its own line, like %placeholder parameter
+" Skip and contain tags to still allow assigning tags to the whole file.
+" FIXME currently broken if tags are on the very first line, they have to go on the second line if
+" placeholders are used too.
 " Placeholder:
-syntax match VimwikiPlaceholder /^\s*%nohtml\s*$/
+execute 'syntax region VimwikiPlaceholderBlock start=/\%^/ end=/^[^%]/me=s-1 '
+      \ 'skip=/'.vimwiki#vars#get_syntaxlocal('rxTags').
+      \ '/ contains=VimwikiPlaceholder,VimwikiTag keepend'
 syntax match VimwikiPlaceholder
-      \ /^\s*%title\ze\%(\s.*\)\?$/ nextgroup=VimwikiPlaceholderParam skipwhite
-syntax match VimwikiPlaceholder
-      \ /^\s*%date\ze\%(\s.*\)\?$/ nextgroup=VimwikiPlaceholderParam skipwhite
-syntax match VimwikiPlaceholder
-      \ /^\s*%template\ze\%(\s.*\)\?$/ nextgroup=VimwikiPlaceholderParam skipwhite
+      \ /^%\a\+\ze\%(\s.*\)\?$/ nextgroup=VimwikiPlaceholderParam skipwhite contained
 syntax match VimwikiPlaceholderParam /.*/ contained
 
 

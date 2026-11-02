@@ -369,6 +369,10 @@ A placeholder is composed of an identifier and some information. Its purpose
 is to provide metadata for use in rendering vimwiki to HTML and populating
 portions of the HTML template used with a vimwiki page.
 
+Placeholders go at the beginning of the file. The first lines of a file should
+be either placeholders or tags. Once a line occurs that is neither a
+placeholder nor tags, no further placeholders in the file will be processed.
+
 {{{vimwiki
 %title Some title
 %nohtml
@@ -378,45 +382,23 @@ portions of the HTML template used with a vimwiki page.
 
 ===== Syntax =====
 
-
 A *placeholder* is represented by one of the following:
-* A [[#title placeholder|title placeholder]]
-* A [[#nohtml placeholder|nohtml placeholder]]
-* A [[#template placeholder|template placeholder]]
-* A [[#date placeholder|date placeholder]]
+* A *parameterized placeholder*
+* An *unparameterized placeholder*
 
-A *title placeholder* is represented by the following:
+A *parameterized placeholder is represented by the following:
 1. Starts at the beginning of a line
 2. A percent sign (`U+0025` aka `%`)
-3. The sequence `title`
+3. One or more alphabetical characters (alphanumeric excluding [0-9])
 4. One or more [[#whitespace character|whitespace characters]]
 5. [[#all characters until end of line|all characters until end of line]]
 6. A [[#line ending|line ending]] or end of input
 
-A *nohtml placeholder* is represented by the following:
+An *unparameterized placeholder* is represented by the following:
 1. Starts at the beginning of a line
 2. A percent sign (`U+0025` aka `%`)
-3. The sequence `nohtml`
+3. One or more alphabetical characters (alphanumeric excluding [0-9])
 4. A [[#line ending|line ending]] or end of input
-
-A *template placeholder* is represented by the following:
-1. Starts at the beginning of a line
-2. A percent sign (`U+0025` aka `%`)
-3. The sequence `template`
-4. One or more [[#whitespace character|whitespace characters]]
-5. [[#all characters until end of line|all characters until end of line]]
-6. A [[#line ending|line ending]] or end of input
-
-A *date placeholder* is represented by the following:
-1. Starts at the beginning of a line
-2. A percent sign (`U+0025` aka `%`)
-3. The sequence `date`
-4. One or more [[#whitespace character|whitespace characters]]
-5. A date string in the format of [[https://en.wikipedia.org/wiki/ISO_8601|ISO 8601]] such as
-   `YYYY-MM-DD` where `YYYY` symbolizes a four-digit year (e.g. `1990`),
-   `MM` symbolizes a two-digit month (e.g. `04`),
-   and `DD` symbolizes a two-digit day (e.g. `23`)
-6. A [[#line ending|line ending]] or end of input
 
 ==== Preformatted Text ====
 

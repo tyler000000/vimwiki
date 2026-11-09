@@ -1469,7 +1469,7 @@ function! s:parse_line(line, state) abort
   if !processed
     " Placeholders go at the beginning of the file
     if state.placeholder_block
-      if line =~# '\m^\s*%\a\+\%(\s.*\)\?$'
+      if line =~# '\m^%\a\+\%(\s.*\)\?$'
         let processed = 1
         let pholder = matchstr(line, '\m^%\zs\a\+\ze\%(\s.*\)\?$')
         let param = matchstr(line, '\m^%\a\+\s\+\zs.*')

@@ -1698,7 +1698,7 @@ See the |g:vimwiki_folding| documentation for more details.
 ==============================================================================
 7. Placeholders                                         *vimwiki-placeholders*
 
-Placeholders go at the beginning of a file and are used to provide metadata.
+Placeholders are used to provide metadata.
 
 TODO- Pass placeholders as arguments to customwiki2html.
 

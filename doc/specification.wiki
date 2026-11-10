@@ -369,10 +369,6 @@ A placeholder is composed of an identifier and some information. Its purpose
 is to provide metadata for use in rendering vimwiki to HTML and populating
 portions of the HTML template used with a vimwiki page.
 
-Placeholders go at the beginning of the file. The first lines of a file should
-be either placeholders or tags. Once a line occurs that is neither a
-placeholder nor tags, no further placeholders in the file will be processed.
-
 {{{vimwiki
 %title Some title
 %nohtml

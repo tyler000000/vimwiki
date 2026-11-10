@@ -1347,7 +1347,6 @@ function! s:parse_line(line, state) abort
   let state.table = a:state.table[:]
   let state.lists = a:state.lists[:]
   let state.deflist = a:state.deflist
-  let state.placeholder_block = a:state.placeholder_block
   let state.placeholder = a:state.placeholder
   let state.header_ids = a:state.header_ids
 
@@ -1467,19 +1466,12 @@ function! s:parse_line(line, state) abort
 
   " placeholders
   if !processed
-    " Placeholders go at the beginning of the file
-    if state.placeholder_block
       if line =~# '\m^%\a\+\%(\s.*\)\?$'
         let processed = 1
         let pholder = matchstr(line, '\m^%\zs\a\+\ze\%(\s.*\)\?$')
         let param = matchstr(line, '\m^%\a\+\s\+\zs.*')
         let state.placeholder = [pholder, param]
-      " Tags can also go at the beginning of the file. If we see anything else then we won't see
-      " more placeholders.
-      elseif line !~# '\m^\s*'.vimwiki#vars#get_syntaxlocal('rxTags').'\s*$'
-        let state.placeholder_block = 0
       endif
-    endif
   endif
 
   " tables
@@ -1730,7 +1722,6 @@ function! s:convert_file_to_lines(wikifile, current_html_file) abort
   let state.table = []
   let state.deflist = 0
   let state.lists = []
-  let state.placeholder_block = 1 " placeholders are defined at the top of the file
   let state.placeholder = []
   let state.header_ids = [['', 0], ['', 0], ['', 0], ['', 0], ['', 0], ['', 0]]
        " [last seen header text in this level, number]
